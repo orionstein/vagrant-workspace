@@ -11,8 +11,8 @@ Vagrant.configure(2) do |config|
   # Update args to the username you wish to be generated for Workspace
   config.vm.provision :shell, path: "bootstrap.sh", args: "orion"
 
-  #Project folder sync
-  config.vm.synced_folder "./projects", "/projects"
+  #Project folder sync - update Owner to match user args above
+  config.vm.synced_folder "./projects", "/projects", owner: "orion", group: "orion"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.

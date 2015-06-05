@@ -17,6 +17,7 @@ cat /home/vagrant/$1.pub >> /home/$1/.ssh/authorized_keys
 chmod 600 /home/$1/.ssh/authorized_keys
 chown $1:$1 /home/$1/.ssh/authorized_keys
 echo "$1 ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+ln -s /projects /home/$1/projects
 su - $1
 curl -sL https://deb.nodesource.com/setup | sudo bash -
 sudo apt-get install -y ruby zsh git vim nodejs build-essential cmake python python-dev libpython-all-dev exuberant-ctags
