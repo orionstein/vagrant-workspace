@@ -20,7 +20,7 @@ echo "$1 ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 ln -s /projects /home/$1/projects
 su - $1
 curl -sL https://deb.nodesource.com/setup | sudo bash -
-sudo apt-get install -y ruby zsh git vim nodejs build-essential cmake python python-dev libpython-all-dev exuberant-ctags
+sudo apt-get install -y ruby zsh git vim nodejs build-essential cmake python python-dev libpython-all-dev exuberant-ctags silversearcher-ag
 sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -y
 sudo chsh -s /usr/bin/zsh $1
