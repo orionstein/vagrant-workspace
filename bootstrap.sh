@@ -25,6 +25,6 @@ sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -y
 sudo docker pull node:0.12.4-onbuild
 sudo chsh -s /usr/bin/zsh $1
-sudo -H -u $1 /usr/bin/zsh -c "mkdir ~/bin; cd ~/bin; curl -sSL http://deis.io/deis-cli/install.sh | sh; sudo ln -fs $PWD/deis /usr/local/bin/deis; cd ~/.ssh; cp /vagrant/keys/deis/* .; find . -iname '*.doc' -exec deis keys:add {} \;"
+sudo -H -u $1 /usr/bin/zsh -c "mkdir ~/bin; cd ~/bin; curl -sSL http://deis.io/deis-cli/install.sh | sh; sudo ln -fs $PWD/deis /usr/local/bin/deis; cd ~/.ssh; cp /vagrant/keys/deis/* .; find . -iname '*.pub' -exec deis keys:add {} \;"
 sudo -H -u $1 /usr/bin/zsh -c "git clone https://github.com/orionstein/rc.git ~/.rc; cd ~/.rc/; /usr/bin/ruby install.rb;"
 exit
