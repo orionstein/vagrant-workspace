@@ -18,6 +18,8 @@ chmod 600 /home/$1/.ssh/authorized_keys
 chown $1:$1 /home/$1/.ssh/authorized_keys
 echo "$1 ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 ln -s /projects /home/$1/projects
+echo "\nhv_vmbus \nhv_storvsc \nhv_blkvsc \nhv_netvsc \n" >> /etc/initramfs-tools/modules
+update-initramfs -u
 su - $1
 curl -sL https://deb.nodesource.com/setup | sudo bash -
 sudo apt-get install -y ruby zsh git vim nodejs build-essential cmake python python-dev libpython-all-dev docker exuberant-ctags silversearcher-ag
@@ -25,6 +27,6 @@ sudo apt-get upgrade -y
 sudo apt-get dist-upgrade -y
 sudo docker pull node:0.12.4-onbuild
 sudo chsh -s /usr/bin/zsh $1
-sudo -H -u $1 /usr/bin/zsh -c "mkdir ~/bin; cd ~/bin; curl -sSL http://deis.io/deis-cli/install.sh | sh; sudo ln -fs $PWD/deis /usr/local/bin/deis; cd ~/.ssh; cp /vagrant/keys/deis/* .; find . -iname '*.pub' -exec deis keys:add {} \;"
+sudo -H -u $1 /usr/bin/zsh -c "mkdir ~/bin; cd ~/bin; curl -sSL http://deis.io/deis-cli/install.sh | sh; sudo ln -fs ~/bin/deis /usr/local/bin/deis; cd ~/.ssh; cp /vagrant/keys/deis/* .; find . -iname '*.pub' -exec deis keys:add {} \;"
 sudo -H -u $1 /usr/bin/zsh -c "git clone https://github.com/orionstein/rc.git ~/.rc; cd ~/.rc/; /usr/bin/ruby install.rb;"
 exit
