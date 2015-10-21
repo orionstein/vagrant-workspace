@@ -12,21 +12,10 @@ Vagrant.configure(2) do |config|
   config.vm.provision :shell, path: "bootstrap.sh", args: "orion"
 
   #Project folder sync - update Owner to match user args above
-  config.vm.synced_folder "./projects", "/projects", owner: "orion", group: "orion"
+  config.vm.synced_folder "./projects", "/projects", owner: "orion", group: "orion", smb_username: "", smb_password: ""
 
-  # Provider-specific configuration so you can fine-tune various
-  # backing providers for Vagrant. These expose provider-specific options.
-  # Example for VirtualBox:
-  #
-  #    config.vm.provider "hyperv" do |vb|
-  #      # Display the VirtualBox GUI when booting the machine
-  #      vb.gui = true
-  #   
-  #      # Customize the amount of memory on the VM:
-  #      vb.memory = "1024"
-  #    end
-  #
-  # View the documentation for the provider you are using for more
-  # information on available options.
+  config.vm.provider "hyperv" do |v, override|
+    v.memory = 1024
+  end
 
 end
